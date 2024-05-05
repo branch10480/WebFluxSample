@@ -9,9 +9,11 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 @Configuration
 public class MyConf {
+    // Beanとして登録できるRouterFunctionは１つだけ
     @Bean
     RouterFunction<ServerResponse> routes() {
         return route(GET("/f/hello"), HelloController::hello)
-        .andRoute(GET("/f/hello2"), HelloController::hello2);
+            // 2つ目以降はandRouteで追加
+            .andRoute(GET("/f/hello2"), HelloController::hello2);
     }
 }
